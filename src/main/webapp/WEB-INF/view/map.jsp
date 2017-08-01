@@ -33,7 +33,7 @@
 </head>
 <body ng-app="CountryManagement" ng-controller="gMap" >
 <div>
-<a href = "<c:url value="/admin"></c:url>">Back to Admin Page!!</a>
+<a href = "<c:url value="/admin"></c:url>" class="red-button">Back to Admin Page!!</a>
 
 <select ng-model="initialselected" ng-options="marker.window.title for marker in markers" ng-change="changefirst()">
 <option value="">Select Initial Point</option>

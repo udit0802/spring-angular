@@ -81,7 +81,7 @@
 
 	</table>
 	
-	<a href="<c:url value="/map"></c:url>">Show the map!!</a>
+	<a href="<c:url value="/map"></c:url>" class="blue-button">Show the map!!</a>
 	
 	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Country</button>
 	
