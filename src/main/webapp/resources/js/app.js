@@ -1,12 +1,14 @@
              //Controller Part
-            app.controller("CountryController", function($scope, $http) {
-         
+            app.controller("adminCtrl", function($scope, $http) {
+     
                
                 $scope.countries = [];
                 $scope.countryForm = {
                     id : -1,
                     countryName : "",
-                    population : ""
+                    population : "",
+                    latitude : 73.1434523,
+                    longitude : 20.3864233
                 };
          
                 //Now load the data from server
@@ -53,6 +55,8 @@
                     $scope.countryForm.countryName = country.countryName;
                     $scope.countryForm.population = country.population;
                     $scope.countryForm.id = country.id;
+                    $scope.countryForm.latitude = country.latitude;
+                    $scope.countryForm.longitude = country.longitude;
                 };
          
                 /* Private Methods */
@@ -70,7 +74,9 @@
          
                 function _success(response) {
                     _refreshCountryData();
-                    _clearFormData()
+                    _clearFormData();
+                    $("#myModal").toggle();
+                	$('.modal-backdrop').hide();
                 }
          
                 function _error(response) {
@@ -82,6 +88,13 @@
                     $scope.countryForm.id = -1;
                     $scope.countryForm.countryName = "";
                     $scope.countryForm.population = "";
+                    $scope.countryForm.latitude = 73.1434523;
+                    $scope.countryForm.longitude = 20.3864233;
                 
                 };
+                
+                $scope.cancel = function(){
+                	$("#myModal").toggle();
+                	$('.modal-backdrop').hide();
+                }
             });

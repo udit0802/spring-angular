@@ -13,4 +13,10 @@ public class AdminController {
 		mv.setViewName("admin");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/map",method = RequestMethod.GET)
+	public ModelAndView getMapPage(ModelAndView mv){
+		mv.setViewName("map");
+		return mv;
+	}
 }

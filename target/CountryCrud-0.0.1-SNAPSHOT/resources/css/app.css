@@ -73,3 +73,9 @@ tfoot tr th:last-child {
                 text-align: left;
                 padding: 5px 10px;
             }
+            
+            
+            
+            html, body { height: 100%; }
+
+.angular-google-map-container { height: 100vh; }

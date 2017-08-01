@@ -1,14 +1,14 @@
-var app = angular.module("CountryManagement", []);
-         
-            //Controller Part
-            app.controller("CountryController", function($scope, $http) {
-         
+             //Controller Part
+            app.controller("adminCtrl", function($scope, $http) {
+     
                
                 $scope.countries = [];
                 $scope.countryForm = {
                     id : -1,
                     countryName : "",
-                    population : ""
+                    population : "",
+                    latitude : 73.1434523,
+                    longitude : 20.3864233
                 };
          
                 //Now load the data from server
@@ -24,11 +24,11 @@ var app = angular.module("CountryManagement", []);
                     if ($scope.countryForm.id == -1) {
                         //Id is absent in form data, it is create new country operation
                         method = "POST";
-                        url = 'http://localhost:7001/AngularjsSpringRestExample/countries';
+                        url = 'http://localhost:7001/CountryCrud/countries';
                     } else {
                         //Id is present in form data, it is edit country operation
                         method = "PUT";
-                        url = 'http://localhost:7001/AngularjsSpringRestExample/countries';
+                        url = 'http://localhost:7001/CountryCrud/countries';
                     }
          
                     $http({
@@ -45,7 +45,7 @@ var app = angular.module("CountryManagement", []);
                 $scope.deleteCountry = function(country) {
                     $http({
                         method : 'DELETE',
-                        url : 'http://localhost:7001/AngularjsSpringRestExample/country/' + country.id
+                        url : 'http://localhost:7001/CountryCrud/country/' + country.id
                     }).then(_success, _error);
                 };
  
@@ -55,6 +55,8 @@ var app = angular.module("CountryManagement", []);
                     $scope.countryForm.countryName = country.countryName;
                     $scope.countryForm.population = country.population;
                     $scope.countryForm.id = country.id;
+                    $scope.countryForm.latitude = country.latitude;
+                    $scope.countryForm.longitude = country.longitude;
                 };
          
                 /* Private Methods */
@@ -62,7 +64,7 @@ var app = angular.module("CountryManagement", []);
                 function _refreshCountryData() {
                     $http({
                         method : 'GET',
-                        url : 'http://localhost:7001/AngularjsSpringRestExample/countries'
+                        url : 'http://localhost:7001/CountryCrud/countries'
                     }).then(function successCallback(response) {
                         $scope.countries = response.data;
                     }, function errorCallback(response) {
@@ -84,6 +86,13 @@ var app = angular.module("CountryManagement", []);
                     $scope.countryForm.id = -1;
                     $scope.countryForm.countryName = "";
                     $scope.countryForm.population = "";
+                    $scope.countryForm.latitude = 73.1434523;
+                    $scope.countryForm.longitude = 20.3864233;
                 
                 };
+                
+                $scope.cancel = function(){
+                	$("#myModal").toggle();
+                	$('.modal-backdrop').hide();
+                }
             });

@@ -13,184 +13,29 @@
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  <link rel="stylesheet"
 	href="<c:url value="/resources/css/app.css" ></c:url>" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+<script src="http://rawgit.com/angular-ui/angular-google-maps/2.0.X/dist/angular-google-maps.js"></script>
+<script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDF3S_BJx6d0_JWt-kMPzdllMSHxrFVJKU&sensor=false&libraries=places,drawing">
+                                                                               
+                                                                </script>
+<script type="text/javascript" src="<c:url value="/resources/js/base.js" ></c:url>"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/js/app.js" ></c:url>"></script>
-
+<script type="text/javascript"
+	src="<c:url value="/resources/js/services.js" ></c:url>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/map.js" ></c:url>"></script>
 <title>AngularJS $http Rest example</title>
-<!-- <script type="text/javascript">
-            var app = angular.module("CountryManagement", []);
-         
-            //Controller Part
-            app.controller("CountryController", function($scope, $http) {
-         
-               
-                $scope.countries = [];
-                $scope.countryForm = {
-                    id : -1,
-                    countryName : "",
-                    population : ""
-                };
-         
-                //Now load the data from server
-                _refreshCountryData();
-         
-                //HTTP POST/PUT methods for add/edit country 
-                // with the help of id, we are going to find out whether it is put or post operation
-                
-                $scope.submitCountry = function() {
-         
-                    var method = "";
-                    var url = "";
-                    if ($scope.countryForm.id == -1) {
-                        //Id is absent in form data, it is create new country operation
-                        method = "POST";
-                        url = 'http://localhost:7001/CountryCrud/countries';
-                    } else {
-                        //Id is present in form data, it is edit country operation
-                        method = "PUT";
-                        url = 'http://localhost:7001/CountryCrud/countries';
-                    }
-         
-                    $http({
-                        method : method,
-                        url : url,
-                        data : angular.toJson($scope.countryForm),
-                        headers : {
-                            'Content-Type' : 'application/json'
-                        }
-                    }).then( _success, _error );
-                };
-         
-                //HTTP DELETE- delete country by Id
-                $scope.deleteCountry = function(country) {
-                    $http({
-                        method : 'DELETE',
-                        url : 'http://localhost:7001/CountryCrud/country/' + country.id
-                    }).then(_success, _error);
-                };
- 
-             // In case of edit, populate form fields and assign form.id with country id
-                $scope.editCountry = function(country) {
-                  
-                    $scope.countryForm.countryName = country.countryName;
-                    $scope.countryForm.population = country.population;
-                    $scope.countryForm.id = country.id;
-                };
-         
-                /* Private Methods */
-                //HTTP GET- get all countries collection
-                function _refreshCountryData() {
-                    $http({
-                        method : 'GET',
-                        url : 'http://localhost:7001/CountryCrud/countries'
-                    }).then(function successCallback(response) {
-                        $scope.countries = response.data;
-                    }, function errorCallback(response) {
-                        console.log(response.statusText);
-                    });
-                }
-         
-                function _success(response) {
-                    _refreshCountryData();
-                    _clearFormData()
-                }
-         
-                function _error(response) {
-                    console.log(response.statusText);
-                }
-         
-                //Clear the form
-                function _clearFormData() {
-                    $scope.countryForm.id = -1;
-                    $scope.countryForm.countryName = "";
-                    $scope.countryForm.population = "";
-                
-                };
-            });
-        </script> -->
-        
-      <!-- <style>
-.blue-button{
- background: #25A6E1;
- filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#25A6E1',endColorstr='#188BC0',GradientType=0);
- padding:3px 5px;
- color:#fff;
- font-family:'Helvetica Neue',sans-serif;
- font-size:12px;
- border-radius:2px;
- -moz-border-radius:2px;
- -webkit-border-radius:4px;
- border:1px solid #1A87B9
-}     
 
-.red-button{
- background: #CD5C5C;
-
- padding:3px 5px;
- color:#fff;
- font-family:'Helvetica Neue',sans-serif;
- font-size:12px;
- border-radius:2px;
- -moz-border-radius:2px;
- -webkit-border-radius:4px;
- border:1px solid #CD5C5C
-}      
-
-table {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
-   width: 50%;
-}
-
-caption {
-  text-align: left;
-  color: silver;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 5px;
-}
-
-th {
-  background: SteelBlue;
-  color: white;
-}
-
-
-tbody tr:nth-child(even) {
-  background: WhiteSmoke;
-}
-
-tbody tr td:nth-child(2) {
-  text-align:center;
-}
-
-tbody tr td:nth-child(3),
-tbody tr td:nth-child(4) {
-  text-align: center;
-  font-family: monospace;
-}
-
-tfoot {
-  background: SeaGreen;
-  color: white;
-  text-align: right;
-}
-
-tfoot tr th:last-child {
-  font-family: monospace;
-}
-
-            td,th{
-                border: 1px solid gray;
-                width: 25%;
-                text-align: left;
-                padding: 5px 10px;
-            }     
-            
-        </style> -->
 <head>
-<body ng-app="CountryManagement" ng-controller="CountryController">
+<body ng-app="CountryManagement" ng-controller="adminCtrl">
 	<h1>AngularJS Restful web services example using $http</h1>
 	<form ng-submit="submitCountry()">
 		<table>
@@ -217,6 +62,8 @@ tfoot tr th:last-child {
 
 			<th>CountryName</th>
 			<th>Population</th>
+			<th>Latitude</th>
+			<th>Longitude</th>
 			<th>Operations</th>
 
 		</tr>
@@ -225,11 +72,74 @@ tfoot tr th:last-child {
 
 			<td>{{ country.countryName }}</td>
 			<td>{{ country.population }}</td>
+			<td>{{ country.coord.latitude }}</td>
+			<td>{{ country.coord.longitude }}</td>
 
 			<td><a ng-click="editCountry(country)" class="blue-button">Edit</a>
 				| <a ng-click="deleteCountry(country)" class="red-button">Delete</a></td>
 		</tr>
 
 	</table>
+	
+	<a href="<c:url value="/map"></c:url>">Show the map!!</a>
+	
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Country</button>
+	
+	<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+      	<form class="form-inline" name="addPAForm">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <label>Country</label>
+                                    <input type="text" class="form-control" name="countryName" ng-model="countryForm.countryName" ng-required="true"/>
+                                    <span style="color:red" class="error-msg" ng-show="addPAForm.countryForm.countryName.$touched&&addPAForm.countryForm.countryName.$invalid">*</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <label>Population</label>
+                                    <input type="number" class="form-control" name="population" ng-model="countryForm.population" ng-required="true"/>
+                                    <span style="color:red" class="error-msg" ng-show="addPAform.countryForm.population.$touched&&addPAform.countryForm.population.$invalid">*</span>
+				
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <label>Latitude</label>
+                                    <input type="number" step=0.0001 class="form-control" name="latitude" ng-model="countryForm.latitude" ng-required="true"/>
+                                    <span style="color:red" class="error-msg" ng-show="addPAform.countryForm.population.$touched&&addPAform.countryForm.population.$invalid">*</span>
+				
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <label>Longitude</label>
+                                    <input type="number" step=0.0001 class="form-control" name="longitude" ng-model="countryForm.longitude" ng-required="true"/>
+                                    <span style="color:red" class="error-msg" ng-show="addPAform.countryForm.population.$touched&&addPAform.countryForm.population.$invalid">*</span>
+				
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+      </div>
+      <div class="modal-footer">
+                            <button class="btn btn-success" type="submit"
+                                ng-click="submitCountry()" ng-disabled="addPAForm.$invalid">Add</button>
+                            <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>

@@ -18,10 +18,10 @@ public class CountryService {
 	  {
 	   countryIdMap=new HashMap<Integer,Country>();
 	  // Creating some objects of Country while initializing
-	   Country indiaCountry=new Country(1, "India",10000);
-	   Country chinaCountry=new Country(4, "China",20000);
-	   Country nepalCountry=new Country(3, "Nepal",8000);
-	   Country bhutanCountry=new Country(2, "Bhutan",7000);
+	   Country indiaCountry=new Country(1, "India",10000,20.5937,78.9629);
+	   Country chinaCountry=new Country(4, "China",20000,35.8617,104.1954);
+	   Country nepalCountry=new Country(3, "Nepal",8000,28.3949,84.1240);
+	   Country bhutanCountry=new Country(2, "Bhutan",7000,27.5142,90.4336);
 
 
 	   countryIdMap.put(1,indiaCountry);
