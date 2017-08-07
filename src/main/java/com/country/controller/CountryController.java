@@ -2,6 +2,7 @@ package com.country.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +15,12 @@ import com.country.service.CountryService;
 @RestController
 public class CountryController {
 
+	@Autowired
 	CountryService countryService = new CountryService();
 	
 	@RequestMapping(value = "/countries", method = RequestMethod.GET)
-	 public List getCountries() {
-	  
-	  List listOfCountries = countryService.getAllCountries();
+	 public List<Country> getCountries() {
+	  List<Country> listOfCountries = countryService.getAllCountries();
 	  return listOfCountries;
 	 }
 	 

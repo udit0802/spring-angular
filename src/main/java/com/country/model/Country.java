@@ -1,5 +1,14 @@
 package com.country.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Country")
 public class Country {
 	
 	public Country() {
@@ -14,16 +23,26 @@ public class Country {
 		  this.longitude = longitude;
 		 }
 
-	 private int id;
-	 private String countryName; 
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	 private long id;
+	
+	@Column(name="countryName")
+	 private String countryName;
+	
+	@Column(name="population")
 	 private long population;
 	 
+	@Column(name="latitude")
 	 private double latitude;
+	
+	@Column(name="longitude")
 	 private double longitude;
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getCountryName() {

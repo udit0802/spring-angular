@@ -7,8 +7,8 @@
                     id : -1,
                     countryName : "",
                     population : "",
-                    latitude : 73.1434523,
-                    longitude : 20.3864233
+                    latitude : 20.3864233,
+                    longitude : 73.1434523
                 };
          
                 //Now load the data from server
@@ -67,6 +67,7 @@
                         url : 'http://localhost:7001/CountryCrud/countries'
                     }).then(function successCallback(response) {
                         $scope.countries = response.data;
+                        _clearFormData()
                     }, function errorCallback(response) {
                         console.log(response.statusText);
                     });
@@ -88,13 +89,14 @@
                     $scope.countryForm.id = -1;
                     $scope.countryForm.countryName = "";
                     $scope.countryForm.population = "";
-                    $scope.countryForm.latitude = 73.1434523;
-                    $scope.countryForm.longitude = 20.3864233;
+                    $scope.countryForm.latitude = 20.3864233;
+                    $scope.countryForm.longitude = 73.1434523;
                 
                 };
                 
                 $scope.cancel = function(){
                 	$("#myModal").toggle();
                 	$('.modal-backdrop').hide();
+                	_clearFormData();
                 }
             });
